@@ -1,37 +1,49 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/08 11:22:27 by tle-dieu          #+#    #+#             */
+/*   Updated: 2018/11/12 17:25:44 by tle-dieu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-static size_t	count_dec(int nb, size_t *dec)
+#include <stdlib.h>
+
+static size_t	ft_count_dec(int nb, size_t *dec)
 {
-	unsigned int	abs;
 	size_t			len;
+	unsigned int	abs;
 
 	len = 1;
 	if (nb < 0)
 	{
-		len++;
 		abs = -nb;
+		len++;
 	}
 	else
 		abs = nb;
 	while (abs > 9)
 	{
-		len++;
 		*dec *= 10;
+		len++;
 		abs /= 10;
 	}
 	return (len);
 }
 
-char	*ft_itoa(int n)
+char			*ft_itoa(int n)
 {
-	char			*nbr;
-	size_t			dec;
 	size_t			i;
+	size_t			dec;
 	unsigned int	abs;
-	
-	i = 0;
+	char			*nbr;
+
 	dec = 1;
-	if (!(nbr = (char *)malloc(sizeof(char) * (count_dec(n, &dec) + 1))))
+	i = 0;
+	if (!(nbr = (char *)malloc(sizeof(char) * (ft_count_dec(n, &dec) + 1))))
 		return (NULL);
 	if (n < 0)
 	{

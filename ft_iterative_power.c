@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_iterative_power.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 18:38:13 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/11 11:51:22 by tle-dieu         ###   ########.fr       */
+/*   Created: 2018/09/03 10:03:41 by tle-dieu          #+#    #+#             */
+/*   Updated: 2018/11/12 12:27:35 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+int		ft_iterative_power(int nb, int power)
 {
-	size_t	i;
-	size_t	j;
+	int i;
+	int result;
 
-	i = 0;
-	j = 0;
-	while (dest[i] && i < size)
-		i++;
-	while (src[j] && (j + i + 1 < size))
+	i = 1;
+	result = nb;
+	if (power == 0)
+		return (1);
+	if (nb == 0 || power < 0)
+		return (0);
+	while (i != power)
 	{
-		dest[j + i] = src[j];
-		j++;
+		result = result * nb;
+		i++;
 	}
-	if (i != size)
-		dest[j + i] = '\0';
-	return (i + ft_strlen(src));
+	return (result);
 }

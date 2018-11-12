@@ -1,14 +1,27 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_strcpy.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/06 14:41:45 by tle-dieu          #+#    #+#             */
+/*   Updated: 2018/11/10 18:34:03 by tle-dieu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-char	*ft_strcpy(char *dest, const char *src)
+#include <string.h>
+
+char	*ft_strcpy(char *dest, char const *src)
 {
-	size_t	i;
+	size_t i;
 
 	i = 0;
-	while (i == 0 || src[i - 1])
+	while (src[i])
 	{
 		dest[i] = src[i];
 		i++;
 	}
+	dest[i] = '\0';
 	return (dest);
 }

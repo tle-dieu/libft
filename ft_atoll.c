@@ -1,33 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atoll.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 14:00:22 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/12 12:41:49 by tle-dieu         ###   ########.fr       */
+/*   Created: 2018/11/10 18:08:20 by tle-dieu          #+#    #+#             */
+/*   Updated: 2018/11/12 17:58:15 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(const char *str)
+long long	ft_atoll(const char *nptr)
 {
-	int					sign;
 	int					i;
 	unsigned long long	result;
+	int					sign;
 
 	sign = 1;
 	result = 0;
 	i = 0;
-	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
+	while ((nptr[i] >= '\t' && nptr[i] <= '\r') || nptr[i] == ' ')
 		i++;
-	if (str[i] == '-')
+	if (nptr[i] == '-')
 		sign = -1;
-	if (str[i] == '+' || str[i] == '-')
+	if (nptr[i] == '-' || nptr[i] == '+')
 		i++;
-	while (str[i] >= '0' && str[i] <= '9')
-		result = result * 10 + str[i++] - 48;
-	if (i > 19 || result >= 9223372036854775808ull)
-		return (sign == 1 ? -1 : 0);
-	return ((int)result * sign);
+	while (nptr[i] >= '0' && nptr[i] <= '9')
+		result = result * 10 + nptr[i++] - 48;
+	if (i > 19 || result >= 9223372036854775808ULL)
+		return (sign == 1 ? 9223372036854775807 : -9223372036854775808ull);
+	return (result * sign);
 }

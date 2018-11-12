@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 18:38:13 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/11 11:51:22 by tle-dieu         ###   ########.fr       */
+/*   Created: 2018/11/11 12:30:09 by tle-dieu          #+#    #+#             */
+/*   Updated: 2018/11/12 12:29:09 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+char	*ft_strrev(char *str)
 {
-	size_t	i;
-	size_t	j;
+	int		j;
+	int		i;
+	char	temp;
 
-	i = 0;
 	j = 0;
-	while (dest[i] && i < size)
-		i++;
-	while (src[j] && (j + i + 1 < size))
-	{
-		dest[j + i] = src[j];
+	i = 0;
+	while (str[j])
 		j++;
+	while (i < --j)
+	{
+		temp = str[j];
+		str[j] = str[i];
+		str[i] = temp;
+		i++;
 	}
-	if (i != size)
-		dest[j + i] = '\0';
-	return (i + ft_strlen(src));
+	return (str);
 }

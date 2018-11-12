@@ -1,7 +1,20 @@
-#include "libft.h"
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2018/11/07 13:02:40 by tle-dieu          #+#    #+#             */
+/*   Updated: 2018/11/09 15:11:42 by tle-dieu         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
-void	ft_putstr(char const *s)
+#include "libft.h"
+#include <unistd.h>
+
+void	ft_putstr(const char *s)
 {
 	if (s)
-    	write(1, s, ft_strlen(s));
+		write(1, s, ft_strlen(s));
 }

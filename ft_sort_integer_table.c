@@ -1,32 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_sort_integer_table.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 18:38:13 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/11 11:51:22 by tle-dieu         ###   ########.fr       */
+/*   Created: 2018/09/02 18:41:51 by tle-dieu          #+#    #+#             */
+/*   Updated: 2018/11/12 12:28:59 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+void	ft_sort_integer_table(int *tab, int size)
 {
-	size_t	i;
-	size_t	j;
+	int		i;
+	char	temp;
 
 	i = 0;
-	j = 0;
-	while (dest[i] && i < size)
-		i++;
-	while (src[j] && (j + i + 1 < size))
+	while (i < size)
 	{
-		dest[j + i] = src[j];
-		j++;
+		if (tab[i] <= tab[i + 1])
+			i++;
+		else
+		{
+			temp = tab[i + 1];
+			tab[i + 1] = tab[i];
+			tab[i] = tab[i + 1];
+			i = 0;
+		}
 	}
-	if (i != size)
-		dest[j + i] = '\0';
-	return (i + ft_strlen(src));
 }

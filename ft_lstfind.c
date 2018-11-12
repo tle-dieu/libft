@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_lstfind.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/08 18:38:13 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/11 11:51:22 by tle-dieu         ###   ########.fr       */
+/*   Created: 2018/11/12 12:30:29 by tle-dieu          #+#    #+#             */
+/*   Updated: 2018/11/12 12:30:30 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dest, const char *src, size_t size)
+t_list	*ft_lstfind(t_list *begin_list, void *data_ref, int (*cmp)())
 {
-	size_t	i;
-	size_t	j;
+	t_list *list;
 
-	i = 0;
-	j = 0;
-	while (dest[i] && i < size)
-		i++;
-	while (src[j] && (j + i + 1 < size))
+	list = begin_list;
+	if (!begin_list)
+		return (NULL);
+	while (list)
 	{
-		dest[j + i] = src[j];
-		j++;
+		if (cmp(list->content, data_ref) == 0)
+			return (list);
+		list = list->next;
 	}
-	if (i != size)
-		dest[j + i] = '\0';
-	return (i + ft_strlen(src));
+	return (0);
 }
