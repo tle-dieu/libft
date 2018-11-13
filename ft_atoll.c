@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 18:08:20 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/12 17:58:15 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2018/11/13 17:58:02 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ long long	ft_atoll(const char *nptr)
 		result = result * 10 + nptr[i++] - 48;
 	if (i > 19 || result >= 9223372036854775808ULL)
 		return (sign == 1 ? 9223372036854775807 : -9223372036854775808ull);
-	return (result * sign);
+	return ((long long)(result * sign));
 }

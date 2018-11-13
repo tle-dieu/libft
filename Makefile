@@ -74,25 +74,33 @@ SRC = ft_atoi.c \
 	  ft_strrev.c
 
 OBJ = $(SRC:.c=.o)
+INCLUDE = libft.h
+
+RED = \033[0;31m
+GREEN = \033[0;32m
+YELLOW = \033[0;33m
+NC = \033[0m
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(AR) $(NAME) $(OBJ)
-	@echo "\033[0;32m$(NAME) has been created\033[0m"
+	@echo "$(GREEN)$(NAME) has been created$(NC)"
 	@$(RLIB) $(NAME)
-	@echo "\033[0;32m$(NAME) has been indexed\033[0m"
+	@echo "$(GREEN)$(NAME) has been indexed$(NC)"
 
-%.o: %.c
+%.o: %.c $(INCLUDE)
 	@$(CC) $(FLAG) -o $@ -c $<
-	@echo "\033[0;32m [OK]     \033[0;33m Compiling:\033[0m$<"
+	@echo "$(GREEN) [OK]     $(YELLOW) Compiling:$(NC)$<"
+
+.PHONY: clean
 
 clean:
 	@$(RM) $(OBJ)
-	@echo "\033[0;31mThe objects have been removed\033[0m"
+	@echo "$(RED)The objects have been removed$(NC)"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "\033[0;31m$(NAME) has been removed\033[0m"
+	@echo "$(RED)$(NAME) has been removed$(NC)"
 
 re: fclean all
