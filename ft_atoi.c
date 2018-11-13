@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 14:00:22 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/13 16:59:47 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2018/11/13 17:03:29 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,4 @@ int		ft_atoi(const char *str)
 	if (i > 19 || result > 9223372036854775807ull)
 		return (sign < 0 ? 0 : -1);
 	return ((int)result * sign);
-}
-
-#include <stdio.h>
-#include <stdlib.h>
-
-int		main(int ac, char **av)
-{
-	if (ac > 1)
-	{
-		printf("real atoi: %d\n", atoi(av[1]));
-		printf("my atoi: %d\n", ft_atoi(av[1]));
-	}
 }
