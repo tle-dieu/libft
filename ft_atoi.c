@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 14:00:22 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/12 12:41:49 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2018/11/13 16:59:47 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,27 @@ int		ft_atoi(const char *str)
 	sign = 1;
 	result = 0;
 	i = 0;
-	while ((str[i] >= '\t' && str[i] <= '\r') || str[i] == ' ')
-		i++;
+	while ((*str >= '\t' && *str <= '\r') || *str == ' ')
+		str++;
 	if (str[i] == '-')
 		sign = -1;
 	if (str[i] == '+' || str[i] == '-')
 		i++;
 	while (str[i] >= '0' && str[i] <= '9')
 		result = result * 10 + str[i++] - 48;
-	if (i > 19 || result >= 9223372036854775808ull)
-		return (sign == 1 ? -1 : 0);
+	if (i > 19 || result > 9223372036854775807ull)
+		return (sign < 0 ? 0 : -1);
 	return ((int)result * sign);
+}
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int		main(int ac, char **av)
+{
+	if (ac > 1)
+	{
+		printf("real atoi: %d\n", atoi(av[1]));
+		printf("my atoi: %d\n", ft_atoi(av[1]));
+	}
 }
