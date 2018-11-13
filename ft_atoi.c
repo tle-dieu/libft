@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 14:00:22 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/13 17:57:31 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2018/11/13 19:36:58 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int		ft_atoi(const char *str)
 		str++;
 	while (str[i] >= '0' && str[i] <= '9')
 		result = result * 10 + str[i++] - 48;
-	if (i > 19 || result > 9223372036854775807ull)
+	if (i > 19 || result > 9223372036854775807)
 		return (sign < 0 ? 0 : -1);
 	return ((int)result * sign);
 }
