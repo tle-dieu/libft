@@ -71,7 +71,9 @@ SRC = ft_atoi.c \
 	  ft_print_words_tables.c \
 	  ft_sort_integer_table.c \
 	  ft_sqrt.c \
-	  ft_strrev.c
+	  ft_strrev.c \
+	  ft_strndup.c \
+	  ft_strcdup.c
 
 OBJ = $(SRC:.c=.o)
 INCLUDE = libft.h

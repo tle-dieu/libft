@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:50:07 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/13 19:29:43 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2018/11/15 16:25:54 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,5 +88,7 @@ void			ft_print_words_tables(char **tab);
 void			ft_sort_integer_table(int *tab, int size);
 int				ft_sqrt(int nb);
 char			*ft_strrev(char *str);
+char			*ft_strcdup(const char *s, char c);
+char			*ft_strndup(const char *s, size_t len);
 
 #endif
