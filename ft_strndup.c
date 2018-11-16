@@ -6,16 +6,16 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 16:20:24 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/15 16:24:54 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2018/11/16 15:39:26 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-char    *ft_strndup(const char *s, size_t len)
+char	*ft_strndup(const char *s, size_t len)
 {
-	char *new;
-	size_t i;
+	char	*new;
+	size_t	i;
 
 	if (!(new = (char *)malloc(sizeof(char) * len + 1)))
 		return (NULL);
