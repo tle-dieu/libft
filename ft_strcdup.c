@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/15 16:23:40 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/16 15:39:41 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2018/11/26 14:13:44 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,19 @@ char	*ft_strcdup(const char *s, char c)
 {
 	char	*new;
 	size_t	i;
+	size_t	j;
 
 	i = 0;
+	j = 0;
 	while (s[i] != c && s[i])
 		i++;
-	if (!(new = (char *)malloc(sizeof(char) * (i))))
+	if (!(new = (char *)malloc(sizeof(char) * (i + 1))))
 		return (NULL);
-	new[i] = '\0';
-	while (i--)
-		new[i] = s[i];
+	while (j < i)
+	{
+		new[j] = s[j];
+		j++;
+	}
+	new[j] = '\0';
 	return (new);
 }

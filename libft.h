@@ -6,13 +6,14 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:50:07 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/15 16:25:54 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2018/11/21 16:43:33 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
+# include "get_next_line.h"
 # include <string.h>
 
 typedef struct	s_list
@@ -90,5 +91,7 @@ int				ft_sqrt(int nb);
 char			*ft_strrev(char *str);
 char			*ft_strcdup(const char *s, char c);
 char			*ft_strndup(const char *s, size_t len);
+size_t			ft_strclen(char const *s, char c);
+size_t			ft_count_words(char const *s, char c);
 
 #endif

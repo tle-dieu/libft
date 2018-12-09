@@ -73,7 +73,10 @@ SRC = ft_atoi.c \
 	  ft_sqrt.c \
 	  ft_strrev.c \
 	  ft_strndup.c \
-	  ft_strcdup.c
+	  ft_strcdup.c \
+	  ft_strclen.c \
+	  ft_count_words.c \
+	  get_next_line.c
 
 OBJ = $(SRC:.c=.o)
 INCLUDE = libft.h
@@ -93,13 +96,13 @@ $(NAME): $(OBJ)
 
 %.o: %.c $(INCLUDE)
 	@$(CC) $(FLAG) -o $@ -c $<
-	@echo "$(GREEN) [OK]     $(YELLOW) Compiling:$(NC)$<"
+	@echo "$(GREEN) [\xE2\x9C\x93]     $(YELLOW) Compiling:$(NC)$<"
 
 .PHONY: clean
 
 clean:
 	@$(RM) $(OBJ)
-	@echo "$(RED)The objects have been removed$(NC)"
+	@echo "$(RED)The libft objects have been removed$(NC)"
 
 fclean: clean
 	@$(RM) $(NAME)
