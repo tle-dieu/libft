@@ -1,22 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_strupper.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/11/09 12:30:21 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/09 18:29:20 by tle-dieu         ###   ########.fr       */
+/*   Created: 2019/01/08 18:14:39 by tle-dieu          #+#    #+#             */
+/*   Updated: 2019/01/09 19:40:29 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include <stdio.h>
 
-void	ft_lstadd(t_list **alst, t_list *new)
+char	*ft_strupper(char *str)
 {
-	if (new)
+	int	i;
+
+	i = 0;
+	printf("str = %s\n", str);
+	while (str[i])
 	{
-		new->next = *alst;
-		*alst = new;
+		if (str[i] >= 'a' && str[i] <= 'z')
+			str[i] -= 32;
+		i++;
 	}
+	return (str);
 }
