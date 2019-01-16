@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/05 20:04:11 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/16 17:56:54 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:23:01 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ static int	more_conv(va_list args, t_print *buff, t_flag *flags, char **format)
 	if (**format == 'b')
 		oux_conv(buff, flags, get_unsigned(args, flags), "01\0");
 	else if (**format == 'C' || **format == 'c')
-		lc_conv(buff, flags, va_arg(args, wint_t), format);
+		lc_conv(buff, flags, format, va_arg(args, wint_t));
 	else if (**format == 'S' || **format == 's')
-		ls_conv(buff, flags, va_arg(args, wchar_t *), format);
+		ls_conv(buff, flags, format, va_arg(args, wchar_t *));
 	else if (flags->width)
 		c_conv(buff, flags, **format);
 	else
@@ -101,7 +101,7 @@ static void	apply_format(va_list args, t_print *buff, char const *format)
 		}
 		else if (!color)
 		{
-			if (buff->i >= BUFF_LEN)
+			if (buff->i >= BS_PRINTF)
 				empty_buff(buff);
 			buff->str[buff->i++] = *format++;
 		}

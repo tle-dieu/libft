@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 17:58:57 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/14 17:50:54 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:16:16 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ void		oux_conv(t_print *buff, t_flag *flags, uintmax_t nb, char *base)
 	int		b_len;
 
 	len = oux_flags(buff, flags, nb, base);
-	if (buff->i + 24 >= BUFF_LEN)
+	if (buff->i + 24 >= BS_PRINTF)
 		empty_buff(buff);
 	b_len = !base[2] ? 2 : 8;
 	if (b_len != 2 && base[8])

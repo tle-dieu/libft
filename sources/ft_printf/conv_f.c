@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 00:24:58 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/14 17:01:59 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:15:42 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	lftoa(t_float *f, long double ld, int prec)
 
 static void	f_plus_space(t_print *buff, t_flag *flags, int sign)
 {
-	if (buff->i >= BUFF_LEN)
+	if (buff->i >= BS_PRINTF)
 		empty_buff(buff);
 	if (!sign)
 	{
@@ -66,7 +66,7 @@ static void	f_in_buff(t_print *buff, t_flag *flags, t_float *f, int i)
 	lst = f->floatpart;
 	while (f->floatpart)
 	{
-		if (buff->i >= BUFF_LEN)
+		if (buff->i >= BS_PRINTF)
 			empty_buff(buff);
 		buff->str[buff->i++] = f->floatpart->digit + 48;
 		f->floatpart = f->floatpart->next;
@@ -100,7 +100,7 @@ void		f_conv(va_list args, t_print *buff, t_flag *flags, char conv)
 		if (!flags->minus)
 			field_in_buff(buff, flags->width, flags->zero);
 	}
-	if (buff->i + i >= BUFF_LEN)
+	if (buff->i + i >= BS_PRINTF)
 		empty_buff(buff);
 	f_in_buff(buff, flags, &f, i);
 }

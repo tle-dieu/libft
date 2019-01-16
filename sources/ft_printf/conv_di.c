@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 17:58:34 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/14 11:17:38 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:15:15 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	int_len(t_flag *flags, intmax_t nb)
 
 static void	di_plus_space(t_print *buff, t_flag *flags, intmax_t nb)
 {
-	if (buff->i >= BUFF_LEN)
+	if (buff->i >= BS_PRINTF)
 		empty_buff(buff);
 	if (nb >= 0)
 	{
@@ -88,7 +88,7 @@ void		di_conv(t_print *buff, t_flag *flags, intmax_t nb)
 
 	abs = nb < 0 ? -nb : nb;
 	len = di_flags(buff, flags, nb);
-	if (buff->i + 20 >= BUFF_LEN)
+	if (buff->i + 20 >= BS_PRINTF)
 		empty_buff(buff);
 	if (!abs && flags->prec - (flags->plus || flags->space || nb < 0))
 		buff->str[buff->i++] = '0';

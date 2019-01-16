@@ -6,14 +6,14 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/10 17:27:49 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/16 17:21:04 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:13:36 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 
 # define GET_NEXT_LINE_H
-# define BUFF_SIZE 100
+# define BS_GNL 100
 
 int					get_next_line(const int fd, char **line);
 

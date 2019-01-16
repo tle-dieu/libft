@@ -6,13 +6,13 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 21:48:56 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/16 17:20:58 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:20:54 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
-# define BUFF_LEN 8192
+# define BS_PRINTF 8192
 
 # include <stdarg.h>
 # include <inttypes.h>
@@ -20,7 +20,7 @@
 
 typedef struct		s_print
 {
-	char			str[BUFF_LEN + 1];
+	char			str[BS_PRINTF + 1];
 	int				i;
 	int				error;
 	int				total;
@@ -70,13 +70,13 @@ void				s_conv(t_print *buff, t_flag *flags, char *s);
 void				p_conv(t_print *buff, t_flag *flags, uintmax_t nb);
 void				di_conv(t_print *buff, t_flag *flags, intmax_t nb);
 void				oux_conv(t_print *buff, t_flag *flags,
-					uintmax_t nb, char *base);
+		uintmax_t nb, char *base);
 void				f_conv(va_list args, t_print *buff,
-					t_flag *flags, char conv);
+		t_flag *flags, char conv);
 void				lc_conv(t_print *buff, t_flag *flags,
-					wint_t c, char **format);
+		char **format, wint_t c);
 void				ls_conv(t_print *buff, t_flag *flags,
-					wchar_t *s, char **format);
+		char **format, wchar_t *s);
 
 /*
 ** --------------------BUFF--------------------

@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/14 11:16:18 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/14 20:34:00 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:19:00 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	wchar_in_buff(t_print *buff, wint_t c, int len)
 {
-	if (buff->i + len >= BUFF_LEN)
+	if (buff->i + len >= BS_PRINTF)
 		empty_buff(buff);
 	if (len == 1 || (MB_CUR_MAX == 1 && c <= 255))
 	{
@@ -34,7 +34,7 @@ static int	wchar_in_buff(t_print *buff, wint_t c, int len)
 	return (len);
 }
 
-static int	check_wchar(wchar_t *s, t_flag *flags, char **format, t_print *buff)
+static int	check_wchar(t_print *buff, t_flag *flags, char **format, wchar_t *s)
 {
 	int len;
 	int k;
@@ -60,7 +60,7 @@ static int	check_wchar(wchar_t *s, t_flag *flags, char **format, t_print *buff)
 	return (len);
 }
 
-void		ls_conv(t_print *buff, t_flag *flags, wchar_t *s, char **format)
+void		ls_conv(t_print *buff, t_flag *flags, char **format, wchar_t *s)
 {
 	int k;
 	int len;
@@ -68,7 +68,7 @@ void		ls_conv(t_print *buff, t_flag *flags, wchar_t *s, char **format)
 
 	if (!s)
 		return (s_conv(buff, flags, NULL));
-	if ((len = check_wchar(s, flags, format, buff)) == -1)
+	if ((len = check_wchar(buff, flags, format, s)) == -1)
 		return ;
 	if (flags->width)
 	{
@@ -88,7 +88,7 @@ void		ls_conv(t_print *buff, t_flag *flags, wchar_t *s, char **format)
 		field_in_buff(buff, flags->width - tmp, 0);
 }
 
-void		lc_conv(t_print *buff, t_flag *flags, wint_t c, char **format)
+void		lc_conv(t_print *buff, t_flag *flags, char **format, wint_t c)
 {
 	int len;
 

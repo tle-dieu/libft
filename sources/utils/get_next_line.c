@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 16:37:36 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/20 16:16:36 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:23:50 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,16 +61,16 @@ static int		check_line(t_gnl *actual, int ret, char **line)
 int				get_next_line(const int fd, char **line)
 {
 	int				ret;
-	char			buf[BUFF_SIZE + 1];
+	char			buf[BS_GNL + 1];
 	static t_gnl	*list;
 	t_gnl			*actual;
 	char			*tmp;
 
-	if (fd < 0 || !line || read(fd, buf, 0) < 0 || BUFF_SIZE <= 0)
+	if (fd < 0 || !line || read(fd, buf, 0) < 0 || BS_GNL <= 0)
 		return (-1);
 	if (!(actual = choose_fd(&list, fd)))
 		return (-1);
-	while ((ret = read(fd, buf, BUFF_SIZE)))
+	while ((ret = read(fd, buf, BS_GNL)))
 	{
 		buf[ret] = '\0';
 		tmp = actual->str;

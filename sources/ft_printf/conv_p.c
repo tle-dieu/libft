@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 17:59:27 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/10 20:52:41 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:16:36 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int	p_flags(t_print *buff, t_flag *flags, uintmax_t nb)
 		len = base_len(nb, 16) - (!nb && !flags->prec);
 		p_width(buff, flags, len, 0);
 	}
-	if (buff->i + 3 >= BUFF_LEN)
+	if (buff->i + 3 >= BS_PRINTF)
 		empty_buff(buff);
 	buff->str[buff->i++] = '0';
 	buff->str[buff->i++] = 'x';
@@ -66,7 +66,7 @@ void		p_conv(t_print *buff, t_flag *flags, uintmax_t nb)
 	int			len;
 
 	len = p_flags(buff, flags, nb);
-	if (buff->i + 18 >= BUFF_LEN)
+	if (buff->i + 18 >= BS_PRINTF)
 		empty_buff(buff);
 	if (!nb && flags->prec)
 		buff->str[buff->i++] = '0';

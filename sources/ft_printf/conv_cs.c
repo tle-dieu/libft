@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 18:08:45 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/16 17:25:56 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/16 18:21:48 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	c_conv(t_print *buff, t_flag *flags, int c)
 {
 	if (flags->width > 1 && !flags->minus)
 		field_in_buff(buff, flags->width - 1, flags->zero);
-	if (buff->i >= BUFF_LEN)
+	if (buff->i >= BS_PRINTF)
 		empty_buff(buff);
 	buff->str[buff->i++] = (unsigned char)c;
 	if (flags->width && flags->minus)
@@ -40,7 +40,7 @@ void	s_conv(t_print *buff, t_flag *flags, char *s)
 	}
 	while (--flags->prec != -1 && *s)
 	{
-		if (buff->i >= BUFF_LEN)
+		if (buff->i >= BS_PRINTF)
 			empty_buff(buff);
 		buff->str[buff->i++] = *s++;
 	}
