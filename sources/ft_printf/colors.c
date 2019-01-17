@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 00:24:00 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/16 18:14:34 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/17 00:34:35 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ static char	*get_style(char *color)
 		return ("\x1b[4m\0");
 	if (!ft_strcmp("{background}", color))
 		return ("\x1b[7m\0");
+	if (!ft_strcmp("{clear}", color))
+		return ("\x1b[2J");
 	return (NULL);
 }
 
