@@ -28,6 +28,7 @@ SOURCES := $(FT_PRINTF)buff.c \
 		  $(FT_PRINTF)conv_oux.c \
 		  $(FT_PRINTF)conv_p.c \
 		  $(FT_PRINTF)flags.c \
+		  $(FT_PRINTF)ft_dprintf.c \
 		  $(FT_PRINTF)ft_printf.c \
 		  $(FT_PRINTF)ftoa_binary.c \
 		  $(FT_PRINTF)ftoa_bint.c \
