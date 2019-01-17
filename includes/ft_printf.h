@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 21:48:56 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/16 18:20:54 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/17 12:47:16 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct		s_print
 {
 	char			str[BS_PRINTF + 1];
 	int				i;
+	int				fd;
 	int				error;
 	int				total;
 
@@ -49,6 +50,7 @@ typedef struct		s_flag
 */
 
 int					ft_printf(char const *format, ...);
+int					ft_dprintf(int fd, char const *format, ...);
 intmax_t			get_signed(va_list args, t_flag *flags);
 uintmax_t			get_unsigned(va_list args, t_flag *flags);
 int					base_len(uintmax_t nb, int base);

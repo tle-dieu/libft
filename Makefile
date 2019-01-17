@@ -107,6 +107,7 @@ SOURCES := $(FT_PRINTF)buff.c \
 		  $(UTILS)ft_putnbr_fd.c \
 		  $(UTILS)get_next_line.c
 
+INCLUDES := $(addprefix $(INCLUDES_FOLDER), libft.h ft_printf.h get_next_line.h)
 OBJECTS := $(addprefix $(OBJECTS_FOLDER), $(SOURCES:.c=.o))
 
 RED := \033[0;31m
@@ -122,7 +123,7 @@ $(NAME): $(OBJECTS)
 	@$(RLIB) $(NAME)
 	@echo "$(GREEN)$(NAME) has been indexed$(NC)"
 
-objects/%.o: %.c $(INCLUDE_FOLDER)
+objects/%.o: %.c $(INCLUDES)
 	@mkdir -p $(dir $@) 
 	@$(CC) $(FLAG) -I $(INCLUDES_FOLDER) -o $@ -c $<
 	@echo "$(GREEN) [\xE2\x9C\x93]     $(YELLOW) Compiling:$(NC) $(basename $(notdir $<))"

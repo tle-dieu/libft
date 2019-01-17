@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/05 20:04:11 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/17 12:45:14 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/17 12:44:46 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ static void	apply_format(va_list args, t_print *buff, char const *format)
 	}
 }
 
-int			ft_printf(char const *format, ...)
+int			ft_dprintf(int fd, char const *format, ...)
 {
 	va_list	args;
 	t_print	buff;
@@ -117,7 +117,7 @@ int			ft_printf(char const *format, ...)
 	buff.i = 0;
 	buff.total = 0;
 	buff.error = 0;
-	buff.fd = 1;
+	buff.fd = fd;
 	apply_format(args, &buff, format);
 	empty_buff(&buff);
 	va_end(args);
