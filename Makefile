@@ -111,32 +111,37 @@ SOURCES := $(FT_PRINTF)buff.c \
 INCLUDES := $(addprefix $(INCLUDES_FOLDER), libft.h ft_printf.h get_next_line.h)
 OBJECTS := $(addprefix $(OBJECTS_FOLDER), $(SOURCES:.c=.o))
 
-RED := \033[0;31m
-GREEN := \033[0;32m
-YELLOW := \033[0;33m
+GREEN := \033[38;2;12;231;58m
+RED := \033[38;2;255;60;51m
+YELLOW := \033[38;2;251;196;15m
+RMLINE = \033[2K
 NC := \033[0m
 
 all: $(NAME)
+	@tput cnorm
 
 $(NAME): $(OBJECTS)
-	@$(AR) $(NAME) $^
-	@echo "$(GREEN)$(NAME) has been created$(NC)"
+	@printf "$(RMLINE)$(YELLOW)All compiled$(NC)\n"
+	@$(AR) $(NAME) $(OBJECTS)
+	@printf "$(GREEN)$(NAME) has been created$(NC)\n"
 	@$(RLIB) $(NAME)
-	@echo "$(GREEN)$(NAME) has been indexed$(NC)"
+	@printf "$(GREEN)$(NAME) has been indexed$(NC)\n"
 
 objects/%.o: %.c $(INCLUDES)
+	@tput civis
 	@mkdir -p $(dir $@) 
 	@$(CC) $(FLAG) -I $(INCLUDES_FOLDER) -o $@ -c $<
-	@echo "$(GREEN) [\xE2\x9C\x93]     $(YELLOW) Compiling:$(NC) $(basename $(notdir $<))"
+	@printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(NC) $(notdir $<)\r"
+	@sleep 0.05
 
 .PHONY: clean
 
 clean:
 	@$(RM) $(OBJECTS_FOLDER)
-	@echo "$(RED)The libft objects have been removed$(NC)"
+	@printf "$(RED)The libft objects have been removed$(NC)\n"
 
 fclean: clean
 	@$(RM) $(NAME)
-	@echo "$(RED)$(NAME) has been removed$(NC)"
+	@printf "$(RED)$(NAME) has been removed$(NC)\n"
 
 re: fclean all
