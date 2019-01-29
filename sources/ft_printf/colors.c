@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/10 00:24:00 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/29 11:57:54 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/01/29 12:29:49 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ static char	*more_style(char *color)
 		return ("\x1b[?47l");
 	if (!ft_strcmp("{screen_restore}", color))
 		return ("\x1b[?47h");
+	if (!ft_strcmp("{remove_line}", color))
+		return ("\x1b[2K");
 	return (NULL);
 }
 
