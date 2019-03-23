@@ -36,6 +36,7 @@ SOURCES := $(FT_PRINTF)buff.c \
 		  $(FT_PRINTF)ftoa_list.c \
 		  $(FT_PRINTF)utils.c \
 		  $(STRING)ft_count_words.c \
+		  $(STRING)ft_count_occ.c \
 		  $(STRING)ft_isalnum.c \
 		  $(STRING)ft_isalpha.c \
 		  $(STRING)ft_isascii.c \
