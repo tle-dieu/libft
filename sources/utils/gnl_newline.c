@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 16:37:36 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/04/08 20:57:06 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/04/08 20:55:51 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ static int		check_line(t_gnl *actual, int ret, char **line)
 
 	if (ret == 0 && !ft_strlen(actual->str))
 		return (0);
-	if (!(*line = ft_strndup(actual->str, ft_strclen(actual->str, '\n') + 1)))
+	if (!(*line = ft_strcdup(actual->str, '\n')))
 		return (-1);
 	if (ft_strclen(actual->str, '\n') < ft_strlen(actual->str))
 	{
@@ -60,7 +60,7 @@ static int		check_line(t_gnl *actual, int ret, char **line)
 	return (1);
 }
 
-int				gnl_newline(const int fd, char **line)
+int				get_next_line(const int fd, char **line)
 {
 	int				ret;
 	char			buf[BS_GNL + 1];
