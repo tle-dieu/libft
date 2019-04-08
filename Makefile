@@ -56,6 +56,7 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(STRING)ft_striter.c \
 		  $(STRING)ft_striteri.c \
 		  $(STRING)ft_strjoin.c \
+		  $(STRING)ft_strjoin_nl.c \
 		  $(STRING)ft_strlcat.c \
 		  $(STRING)ft_strlen.c \
 		  $(STRING)ft_strmap.c \
@@ -107,7 +108,8 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(UTILS)ft_putendl_fd.c \
 		  $(UTILS)ft_putnbr.c \
 		  $(UTILS)ft_putnbr_fd.c \
-		  $(UTILS)get_next_line.c
+		  $(UTILS)get_next_line.c \
+		  $(UTILS)gnl_newline.c
 
 INCLUDES = $(addprefix $(INCLUDES_FOLDER), libft.h ft_printf.h get_next_line.h)
 OBJECTS = $(addprefix $(OBJECTS_FOLDER), $(SOURCES:.c=.o))
