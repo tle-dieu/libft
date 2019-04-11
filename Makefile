@@ -18,6 +18,7 @@ FT_PRINTF = ft_printf/
 UTILS = utils/
 LIST = list/
 MEMORY = memory/
+PRINT = printf
 
 SOURCES = $(FT_PRINTF)buff.c \
 		  $(FT_PRINTF)colors.c \
@@ -119,31 +120,50 @@ RED = \033[38;2;255;60;51m
 YELLOW = \033[38;2;251;196;15m
 RMLINE = \033[2K
 NC = \033[0m
+HIDE = tput civis
+SHOW = tput cnorm
 
-all: $(NAME)
+ifneq (,$(filter $(flags),n no))
+	CFLAG =
+endif
 
-$(NAME): $(OBJECTS)
-	@printf "$(RMLINE)$(YELLOW)🌘  All compiled$(NC)\n"
-	@$(AR) $(NAME) $(OBJECTS)
-	@printf "$(GREEN)$(NAME) has been created$(NC)\n"
-	@$(RLIB) $(NAME)
-	@printf "$(GREEN)$(NAME) has been indexed$(NC)\n"
+ifneq (,$(filter $(fsanitize),y yes))
+	CFLAG += -g3
+	CFLAG += -fsanitize=address
+endif
 
-objects/%.o: %.c $(INCLUDES)
-	@tput civis
-	@mkdir -p $(dir $@)
-	@$(CC) $(FLAG) -I $(INCLUDES_FOLDER) -o $@ -c $<
-	@printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(NC) $(notdir $<)\r"
-	@sleep 0.01
+ifneq (,$(filter $(silent), y yes))
+	HIDE :=
+	REDIRECT := > /dev/null
+endif
+
+all: $(NAME) Makefile
+
+$(NAME): $(OBJECTS) Makefile
+	$(SHOW)
+	$(PRINT) "$(RMLINE)$(YELLOW)🌘  All compiled$(NC)\n" $(REDIRECT)
+	$(AR) $(NAME) $(OBJECTS)
+	$(PRINT) "$(GREEN)$(NAME) has been created$(NC)\n" $(REDIRECT)
+	$(RLIB) $(NAME)
+	$(PRINT) "$(GREEN)$(NAME) has been indexed$(NC)\n" $(REDIRECT)
+
+objects/%.o: %.c $(INCLUDES) Makefile
+	mkdir -p $(dir $@)
+	$(CC) $(FLAG) -I $(INCLUDES_FOLDER) -o $@ -c $<
+	$(HIDE)
+	$(PRINT) "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(NC) $(notdir $<)\r" $(REDIRECT)
+	sleep 0.01
+
+clean:
+	$(RM) $(OBJECTS_FOLDER)
+	$(PRINT) "$(RED)The libft objects have been removed$(NC)\n" $(REDIRECT)
+
+fclean: clean
+	$(RM) $(NAME)
+	$(PRINT) "$(RED)$(NAME) has been removed$(NC)\n" $(REDIRECT)
+
+re: fclean all
 
 .PHONY: clean
 
-clean:
-	@$(RM) $(OBJECTS_FOLDER)
-	@printf "$(RED)The libft objects have been removed$(NC)\n"
-
-fclean: clean
-	@$(RM) $(NAME)
-	@printf "$(RED)$(NAME) has been removed$(NC)\n"
-
-re: fclean all
+.SILENT: $(NAME) $(OBJECTS) clean fclean
