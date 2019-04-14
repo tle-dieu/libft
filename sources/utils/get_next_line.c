@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/18 16:37:36 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/04/08 22:30:19 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/04/14 04:16:18 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,24 @@
 #include "libft.h"
 #include <stdlib.h>
 #include <unistd.h>
+
+static t_gnl	*create_buff(t_gnl *file)
+{
+	t_buff *new;
+
+	if (!(new = (t_buff *)malloc(sizeof(t_buff))))
+		return (NULL);
+	new->ret = 0;
+	new->next = NULL;
+	ft_bzero(new->s, BS_GNL);
+	file->prev = file->last;
+	if (!file->buff)
+		file->buff = new;
+	else
+		file->last->next = new;
+	file->last = new;
+	return (file);
+}
 
 static t_gnl	*choose_fd(t_gnl **begin_list, int fd)
 {
@@ -29,57 +47,52 @@ static t_gnl	*choose_fd(t_gnl **begin_list, int fd)
 	}
 	if (!(new = (t_gnl*)malloc(sizeof(t_gnl))))
 		return (NULL);
-	if (!(new->str = ft_strnew(1)))
-	{
-		free(new);
-		return (NULL);
-	}
+	new->buff = NULL;
+	new->last = NULL;
+	new->total_len = 0;
 	new->fd = fd;
 	new->next = *begin_list;
+	new->prev = NULL;
 	*begin_list = new;
-	return (new);
+	return (create_buff(new));
 }
 
-static int		check_line(t_gnl *actual, int ret, char **line)
+void			print_buff(t_gnl *file, t_buff *buff)
 {
-	char *tmp;
+	int i;
 
-	if (ret == 0 && !ft_strlen(actual->str))
-		return (0);
-	if (!(*line = ft_strcdup(actual->str, '\n')))
-		return (-1);
-	if (ft_strclen(actual->str, '\n') < ft_strlen(actual->str))
+	i = 0;
+	while (buff)
 	{
-		if (!(tmp = ft_strdup((ft_strchr(actual->str, '\n') + 1))))
-			return (-1);
-		free(actual->str);
-		actual->str = tmp;
+		ft_printf("buff %d: '%s'\n", ++i, buff->s);
+		buff = buff->next;
 	}
-	else
-		ft_strclr(actual->str);
-	return (1);
+	ft_printf("last: '%s'\n", file->last->s);
+	ft_printf("\n");
 }
 
 int				get_next_line(const int fd, char **line)
 {
 	int				ret;
-	char			buf[BS_GNL + 1];
 	static t_gnl	*list;
 	t_gnl			*actual;
-	char			*tmp;
+	char			tmp[1];
+	char			*end;
 
-	if (fd < 0 || !line || read(fd, buf, 0) < 0 || BS_GNL <= 0)
+	if (fd < 0 || !line || read(fd, tmp, 0) < 0)
 		return (-1);
 	if (!(actual = choose_fd(&list, fd)))
 		return (-1);
 	ret = 0;
-	while (!ft_strchr(actual->str, '\n') && (ret = read(fd, buf, BS_GNL)) > 0)
+	while ((!actual->prev || !(end = ft_memchr(actual->prev->s, '\n', BS_GNL)))
+	&& (ret = read(fd, actual->last->s, BS_GNL)) > 0)
 	{
-		buf[ret] = '\0';
-		tmp = actual->str;
-		if (!(actual->str = ft_strjoin(actual->str, buf)))
+		actual->last->ret = ret;
+		actual->total_len += ret;
+		print_buff(actual, actual->buff);
+		if (ret == BS_GNL && !(create_buff(actual)))
 			return (-1);
-		free(tmp);
 	}
-	return (check_line(actual, ret, line));
+	line = ft_strnew(actual->total_len);
+	return (ret != 0);
 }
