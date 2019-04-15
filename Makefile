@@ -30,20 +30,15 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(FT_PRINTF)conv_p.c \
 		  $(FT_PRINTF)flags.c \
 		  $(FT_PRINTF)ft_dprintf.c \
-		  $(FT_PRINTF)ft_printf.c \
 		  $(FT_PRINTF)ftoa_binary.c \
 		  $(FT_PRINTF)ftoa_bint.c \
 		  $(FT_PRINTF)ftoa_calc.c \
 		  $(FT_PRINTF)ftoa_list.c \
+		  $(FT_PRINTF)ft_printf.c \
 		  $(FT_PRINTF)utils.c \
+		  $(STRING)ft_count_occ.c \
+		  $(STRING)ft_ncount_occ.c \
 		  $(STRING)ft_count_words.c \
-		  $(STRING)ft_isalnum.c \
-		  $(STRING)ft_isalpha.c \
-		  $(STRING)ft_isascii.c \
-		  $(STRING)ft_isdigit.c \
-		  $(STRING)ft_isprint.c \
-		  $(STRING)ft_putstr.c \
-		  $(STRING)ft_putstr_fd.c \
 		  $(STRING)ft_strcat.c \
 		  $(STRING)ft_strcdup.c \
 		  $(STRING)ft_strchr.c \
@@ -57,7 +52,7 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(STRING)ft_striter.c \
 		  $(STRING)ft_striteri.c \
 		  $(STRING)ft_strjoin.c \
-		  $(STRING)ft_strjoin_nl.c \
+		  $(STRING)ft_strjoin_sep.c \
 		  $(STRING)ft_strlcat.c \
 		  $(STRING)ft_strlen.c \
 		  $(STRING)ft_strmap.c \
@@ -78,10 +73,13 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(STRING)ft_strupper.c \
 		  $(STRING)ft_tolower.c \
 		  $(STRING)ft_toupper.c \
-		  $(STRING)ft_count_occ.c \
-		  $(STRING)ft_ncount_occ.c \
 		  $(NUMERIC)ft_atoi.c \
 		  $(NUMERIC)ft_atoll.c \
+		  $(NUMERIC)ft_isalnum.c \
+		  $(NUMERIC)ft_isalpha.c \
+		  $(NUMERIC)ft_isascii.c \
+		  $(NUMERIC)ft_isdigit.c \
+		  $(NUMERIC)ft_isprint.c \
 		  $(NUMERIC)ft_iterative_power.c \
 		  $(NUMERIC)ft_itoa.c \
 		  $(NUMERIC)ft_sort_integer_table.c \
@@ -93,10 +91,10 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(MEMORY)ft_memcmp.c \
 		  $(MEMORY)ft_memcpy.c \
 		  $(MEMORY)ft_memdel.c \
-		  $(MEMORY)ft_memmove.c \
-		  $(MEMORY)ft_memset.c \
 		  $(MEMORY)ft_memdup.c \
 		  $(MEMORY)ft_memjoin.c \
+		  $(MEMORY)ft_memmove.c \
+		  $(MEMORY)ft_memset.c \
 		  $(LIST)ft_lstadd.c \
 		  $(LIST)ft_lstdel.c \
 		  $(LIST)ft_lstdelone.c \
@@ -112,7 +110,10 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(UTILS)ft_putendl_fd.c \
 		  $(UTILS)ft_putnbr.c \
 		  $(UTILS)ft_putnbr_fd.c \
-		  $(UTILS)get_next_line.c
+		  $(UTILS)ft_putstr.c \
+		  $(UTILS)ft_putstr_fd.c \
+		  $(UTILS)get_next_line.c \
+		  $(UTILS)gnl_newline.c
 
 IRESETLUDES = $(addprefix $(IRESETLUDES_FOLDER), libft.h ft_printf.h get_next_line.h)
 OBJECTS = $(addprefix $(OBJECTS_FOLDER), $(SOURCES:.c=.o))
