@@ -1,6 +1,6 @@
 NAME = libft.a
 CC = gcc
-FLAG = -Wall -Werror -Wextra
+CFLAGS = -Wall -Werror -Wextra
 
 AR = ar rc
 RLIB = ranlib
@@ -95,6 +95,8 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(MEMORY)ft_memdel.c \
 		  $(MEMORY)ft_memmove.c \
 		  $(MEMORY)ft_memset.c \
+		  $(MEMORY)ft_memdup.c \
+		  $(MEMORY)ft_memjoin.c \
 		  $(LIST)ft_lstadd.c \
 		  $(LIST)ft_lstdel.c \
 		  $(LIST)ft_lstdelone.c \
@@ -125,12 +127,12 @@ SHOW = tput cnorm
 SLEEP = sleep 0.01
 
 ifneq (,$(filter $(flags),n no))
-	CFLAG =
+	CCFLAGS =
 endif
 
 ifneq (,$(filter $(fsanitize),y yes))
-	CFLAG += -g3
-	CFLAG += -fsanitize=address
+	CCFLAGS += -g3
+	CCFLAGS += -fsanitize=address
 endif
 
 ifneq (,$(filter $(silent), y yes))
@@ -151,7 +153,7 @@ $(NAME): $(OBJECTS) Makefile
 
 objects/%.o: %.c $(IRESETLUDES) Makefile
 	mkdir -p $(dir $@)
-	$(CC) $(FLAG) -I $(IRESETLUDES_FOLDER) -o $@ -c $<
+	$(CC) $(CFLAGS) -I $(IRESETLUDES_FOLDER) -o $@ -c $<
 	$(HIDE)
 	printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(RESET) $(notdir $<)\r" $(REDIRECT)
 	$(SLEEP)

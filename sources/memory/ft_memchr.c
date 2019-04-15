@@ -6,22 +6,25 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/08 18:12:09 by tle-dieu          #+#    #+#             */
-/*   Updated: 2018/11/08 18:12:24 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/04/15 02:23:00 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <string.h>
+#include <stdlib.h>
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {
-	size_t i;
+	unsigned char const *search;
+	unsigned char		comp;
 
-	i = 0;
-	while (i < n)
+	search = (unsigned char const *)s;
+	comp = (unsigned char)c;
+	while (n--)
 	{
-		if (((unsigned char *)s)[i] == (unsigned char)c)
-			return (((unsigned char *)s) + i);
-		i++;
+		if (*search == comp)
+			return ((void *)search);
+		search++;
 	}
 	return (NULL);
 }

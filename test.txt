@@ -1,4 +1,0 @@
-bonjour 1
-salut 2
-hello 3
-fin 4
