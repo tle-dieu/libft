@@ -1,4 +1,5 @@
 NAME = libft.a
+NAME_SHARED = libft.so
 CC = gcc
 CFLAGS = -Wall -Werror -Wextra
 
@@ -8,7 +9,7 @@ RM = rm -rf
 
 SOURCES_FOLDER = sources/
 OBJECTS_FOLDER = objects/
-IRESETLUDES_FOLDER = includes/
+INCLUDES_FOLDER = includes/
 
 vpath %.c $(SOURCES_FOLDER)
 
@@ -115,7 +116,7 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(UTILS)get_next_line.c \
 		  $(UTILS)gnl_newline.c
 
-IRESETLUDES = $(addprefix $(IRESETLUDES_FOLDER), libft.h ft_printf.h get_next_line.h)
+INCLUDES = $(addprefix $(INCLUDES_FOLDER), libft.h ft_printf.h get_next_line.h)
 OBJECTS = $(addprefix $(OBJECTS_FOLDER), $(SOURCES:.c=.o))
 
 GREEN = \033[38;2;12;231;58m
@@ -147,14 +148,23 @@ all: $(NAME) Makefile
 $(NAME): $(OBJECTS) Makefile
 	$(SHOW)
 	printf "$(RMLINE)$(YELLOW)🌘  All compiled$(RESET)\n" $(REDIRECT)
-	$(AR) $(NAME) $(OBJECTS)
-	printf "$(GREEN)$(NAME) has been created$(RESET)\n" $(REDIRECT)
-	$(RLIB) $(NAME)
-	printf "$(GREEN)$(NAME) has been indexed$(RESET)\n" $(REDIRECT)
+	$(AR) $@ $(OBJECTS)
+	printf "$(GREEN)$@ has been created$(RESET)\n" $(REDIRECT)
+	$(RLIB) $@
+	printf "$(GREEN)$@ has been indexed$(RESET)\n" $(REDIRECT)
 
-objects/%.o: %.c $(IRESETLUDES) Makefile
+so: CFLAGS += -fPIC
+so: $(NAME_SHARED)
+
+$(NAME_SHARED): $(OBJECTS) Makefile
+	$(SHOW)
+	printf "$(RMLINE)$(YELLOW)🌘  All compiled$(RESET)\n" $(REDIRECT)
+	$(CC) -shared $(OBJECTS) -o $@
+	printf "$(GREEN)$@ has been created$(RESET)\n" $(REDIRECT)
+
+objects/%.o: %.c $(INCLUDES) Makefile
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I $(IRESETLUDES_FOLDER) -o $@ -c $<
+	$(CC) $(CFLAGS) -I $(INCLUDES_FOLDER) -o $@ -c $<
 	$(HIDE)
 	printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(RESET) $(notdir $<)\r" $(REDIRECT)
 	$(SLEEP)
@@ -165,10 +175,11 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
+	$(RM) $(NAME_SHARED)
 	printf "$(RED)$(NAME) has been removed$(RESET)\n" $(REDIRECT)
 
 re: fclean all
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re so
 
-.SILENT: $(NAME) $(OBJECTS) clean fclean
+.SILENT: $(NAME) $(OBJECTS) clean fclean $(NAME_SHARED)
