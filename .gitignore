@@ -42,6 +42,9 @@
 *.idb
 *.pdb
 
+# Tests
+tmp_lib/
+
 # Kernel Module Compile Results
 *.mod*
 *.cmd

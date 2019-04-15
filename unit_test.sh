@@ -129,7 +129,11 @@ fi
 
 #libft_unit_test
 make fclean so
-sed -i '/LIBFTDIR	=/c\LIBFTDIR = ..\/' libft-unit-test/Makefile
+if [[ "$OSTYPE" == "darwin" ]]; then
+	sed -i '' '/LIBFTDIR	=/c\LIBFTDIR = ..\/' libft-unit-test/Makefile
+else
+	sed -i '/LIBFTDIR	=/c\LIBFTDIR = ..\/' libft-unit-test/Makefile
+fi
 (cd libft-unit-test/ && make && ./run_test)
 if [[ -n $(cat libft-unit-test/result.log | grep FAILED) ]]; then
 	error=1
