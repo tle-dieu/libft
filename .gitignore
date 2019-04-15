@@ -44,6 +44,8 @@
 
 # Tests
 tmp_lib/
+libft-unit-test/
+Libftest/
 
 # Kernel Module Compile Results
 *.mod*
