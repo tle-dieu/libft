@@ -1,22 +1,21 @@
 language: c
 
-if: os == linux
-    before_install:
+before_install:
+   if: os == linux
         - sudo apt-get update
         - sudo apt-get install gcc
         - sudo apt-get install clang
         - sudo apt-get install -y libbsd-dev
-
 os:
-    - osx
-    - linux
+  - osx
+  - linux
 
 compiler:
-    - clang
-    - gcc
+  - clang
+  - gcc
 
 before_script:
-    - git clone https://github.com/jtoty/Libftest.git
-    - git clone https://github.com/alelievr/libft-unit-test.git
+  - git clone https://github.com/jtoty/Libftest.git
+  - git clone https://github.com/alelievr/libft-unit-test.git
 
 script: make && bash unit_test.sh
