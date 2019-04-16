@@ -131,7 +131,7 @@ fi
 make fclean so
 env
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-	sed -i '' '/LIBFTDIR	=/c\\LIBFTDIR = ..' libft-unit-test/Makefile
+	sed -i '' "/LIBFTDIR\t=/c\\LIBFTDIR = \.\." libft-unit-test/Makefile
 else
 	sed -i '/LIBFTDIR	=/c\LIBFTDIR = ..' libft-unit-test/Makefile
 fi
