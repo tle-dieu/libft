@@ -129,7 +129,9 @@ fi
 
 #libft_unit_test
 make fclean so
-if [[ "$OSTYPE" == "darwin" ]]; then
+env
+if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+	echo "mac os version"
 	sed -i '' '/LIBFTDIR	=/c\LIBFTDIR = ..\/' libft-unit-test/Makefile
 else
 	sed -i '/LIBFTDIR	=/c\LIBFTDIR = ..\/' libft-unit-test/Makefile
