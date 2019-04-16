@@ -131,10 +131,9 @@ fi
 make fclean so
 env
 if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-	echo "mac os version"
-	sed -i '' '/LIBFTDIR	=/c\LIBFTDIR = ..\/' libft-unit-test/Makefile
+	sed -i '' '/LIBFTDIR	=/c\\LIBFTDIR = ..' libft-unit-test/Makefile
 else
-	sed -i '/LIBFTDIR	=/c\LIBFTDIR = ..\/' libft-unit-test/Makefile
+	sed -i '/LIBFTDIR	=/c\LIBFTDIR = ..' libft-unit-test/Makefile
 fi
 (cd libft-unit-test/ && make && ./run_test)
 if [[ -n $(cat libft-unit-test/result.log | grep FAILED) ]]; then
