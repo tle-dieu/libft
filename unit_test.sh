@@ -129,12 +129,8 @@ fi
 
 #libft_unit_test
 make fclean so
-env
-if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-	sed -i '' "/LIBFTDIR\t=/c\\LIBFTDIR = \.\." libft-unit-test/Makefile
-else
-	sed -i '/LIBFTDIR	=/c\LIBFTDIR = ..' libft-unit-test/Makefile
-fi
+awk '/LIBFTDIR/{gsub(/LIBFTDIR\t=\t..\/libft/, "LIBFTDIR = ../")};{print}' libft-unit-test/Makefile > makefile.tmp
+mv makefile.tmp libft-unit-test/Makefile
 (cd libft-unit-test/ && make && ./run_test)
 if [[ -n $(cat libft-unit-test/result.log | grep FAILED) ]]; then
 	error=1
@@ -143,3 +139,5 @@ else
 	printf "\033[32mlibft-unit-test: OK\033[0m\n"
 fi
 exit $error
+
+#moulitest
