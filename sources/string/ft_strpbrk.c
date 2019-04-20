@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strupper.c                                      :+:      :+:    :+:   */
+/*   ft_strpbrk.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/01/08 18:14:39 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/09 19:40:29 by tle-dieu         ###   ########.fr       */
+/*   Created: 2019/04/20 20:24:59 by tle-dieu          #+#    #+#             */
+/*   Updated: 2019/04/20 20:25:45 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-
-char	*ft_strupper(char *str)
+char	*ft_strpbrk(const char *s, const char *chr)
 {
-	int	i;
+	const char *tmp;
 
-	i = 0;
-	printf("str = %s\n", str);
-	while (str[i])
+	while (*s)
 	{
-		if (str[i] >= 'a' && str[i] <= 'z')
-			str[i] -= 32;
-		i++;
+		tmp = chr;
+		while (*tmp)
+			if (*tmp++ == *s)
+				return ((char *)s);
+		s++;
 	}
-	return (str);
+	return (NULL);
 }

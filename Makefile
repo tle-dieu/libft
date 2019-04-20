@@ -46,7 +46,9 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(STRING)ft_strclen.c \
 		  $(STRING)ft_strclr.c \
 		  $(STRING)ft_strcmp.c \
+		  $(STRING)ft_strcmpi.c \
 		  $(STRING)ft_strcpy.c \
+		  $(STRING)ft_strcspn.c \
 		  $(STRING)ft_strdel.c \
 		  $(STRING)ft_strdup.c \
 		  $(STRING)ft_strequ.c \
@@ -56,6 +58,7 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(STRING)ft_strjoin_sep.c \
 		  $(STRING)ft_strlcat.c \
 		  $(STRING)ft_strlen.c \
+		  $(STRING)ft_strlwr.c \
 		  $(STRING)ft_strmap.c \
 		  $(STRING)ft_strmapi.c \
 		  $(STRING)ft_strncat.c \
@@ -65,13 +68,15 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(STRING)ft_strnequ.c \
 		  $(STRING)ft_strnew.c \
 		  $(STRING)ft_strnstr.c \
+		  $(STRING)ft_strpbrk.c \
 		  $(STRING)ft_strrchr.c \
 		  $(STRING)ft_strrev.c \
 		  $(STRING)ft_strsplit.c \
+		  $(STRING)ft_strspn.c \
 		  $(STRING)ft_strstr.c \
 		  $(STRING)ft_strsub.c \
 		  $(STRING)ft_strtrim.c \
-		  $(STRING)ft_strupper.c \
+		  $(STRING)ft_strupr.c \
 		  $(STRING)ft_tolower.c \
 		  $(STRING)ft_toupper.c \
 		  $(NUMERIC)ft_atoi.c \

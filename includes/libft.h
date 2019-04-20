@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:50:07 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/04/16 05:18:40 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/04/20 20:37:03 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ char			*ft_strchr(const char *s, int c);
 size_t			ft_strclen(char const *s, char c);
 void			ft_strclr(char *s);
 int				ft_strcmp(const char *s1, const char *s2);
+int				ft_strcmpi(const char *s1, const char *s2);
 char			*ft_strcpy(char *dest, char const *src);
+size_t			ft_strcspn(const char *s, const char *reject);
 void			ft_strdel(char **as);
 char			*ft_strdup(const char *s);
 int				ft_strequ(char const *s1, char const *s2);
@@ -54,6 +56,7 @@ char			*ft_strjoin(char const *s1, char const *s2);
 char			*ft_strjoin_sep(char const *s1, char const *s2, char c);
 size_t			ft_strlcat(char *dest, const char *src, size_t size);
 size_t			ft_strlen(const char *s);
+char			*ft_strlwr(char *str);
 char			*ft_strmap(char const *s, char (*f)(char));
 char			*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char			*ft_strncat(char *dest, const char *src, size_t n);
@@ -63,13 +66,15 @@ char			*ft_strndup(const char *s, size_t len);
 int				ft_strnequ(char const *s1, char const *s2, size_t n);
 char			*ft_strnew(size_t size);
 char			*ft_strnstr(const char *big, const char *little, size_t len);
+char			*ft_strpbrk(const char *s, const char *chr);
 char			*ft_strrchr(const char *s, int c);
 char			*ft_strrev(char *str);
 char			**ft_strsplit(char const *s, char c);
+size_t			ft_strspn(const char *s, const char *accept);
 char			*ft_strstr(const char *big, const char *little);
 char			*ft_strsub(char const *s, unsigned int start, size_t len);
 char			*ft_strtrim(char const *s);
-char			*ft_strupper(char *str);
+char			*ft_strupr(char *str);
 int				ft_tolower(int c);
 int				ft_toupper(int c);
 
