@@ -6,7 +6,7 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/05/31 16:08:18 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/05/31 16:20:39 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,9 +95,9 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(STRING)ft_tolower.c \
 		  $(STRING)ft_toupper.c \
 		  $(NUMERIC)ft_atoi.c \
-		  $(NUMERIC)ft_atoi_flag.c \
+		  $(NUMERIC)atoi_flag.c \
 		  $(NUMERIC)ft_atoll.c \
-		  $(NUMERIC)ft_atoui_flag.c \
+		  $(NUMERIC)atoui_flag.c \
 		  $(NUMERIC)ft_isalnum.c \
 		  $(NUMERIC)ft_isalpha.c \
 		  $(NUMERIC)ft_isascii.c \
