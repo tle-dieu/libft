@@ -6,7 +6,7 @@
 /*   By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 16:20:13 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/05/31 16:20:14 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/05/31 16:38:29 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	get_sign(char c, int *sign)
 	return (i);
 }
 
-long long	ft_atoi_flag(char **nbr, int *error, int flags, char *stop)
+long long	atoi_flag(char **nbr, int *error, int flags, char *stop)
 {
 	unsigned long long	result;
 	int					sign;

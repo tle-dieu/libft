@@ -6,13 +6,13 @@
 /*   By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 16:20:05 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/05/31 16:20:06 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/05/31 16:38:15 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned long	ft_atoui_flag(char **nbr, int *error, int f, char *stop)
+unsigned long	atoui_flag(char **nbr, int *error, int f, char *stop)
 {
 	unsigned long long	result;
 	char				*s;
