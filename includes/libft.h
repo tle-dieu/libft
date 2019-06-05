@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:50:07 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/05/31 16:19:28 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/06/05 16:54:18 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,9 +113,9 @@ void			*ft_memset(void *s, int c, size_t n);
 */
 
 int				ft_atoi(const char *str);
-long long		atoi_flag(char **s, int *error, int flags, char *stop);
+long long		atoi_flag(char **s, int *error, int flags, char *eos);
 long long		ft_atoll(const char *nptr);
-unsigned long	atoui_flag(char **s, int *error, int f, char *stop);
+unsigned long	atoui_flag(char **s, int *error, int f, char *eos);
 int				ft_isalnum(int c);
 int				ft_isalpha(int c);
 int				ft_isascii(int c);

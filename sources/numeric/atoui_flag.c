@@ -6,13 +6,13 @@
 /*   By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/05/31 16:20:05 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/05/31 16:38:15 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/06/05 16:54:01 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-unsigned long	atoui_flag(char **nbr, int *error, int f, char *stop)
+unsigned long	atoui_flag(char **nbr, int *error, int f, char *eos)
 {
 	unsigned long long	result;
 	char				*s;
@@ -26,7 +26,7 @@ unsigned long	atoui_flag(char **nbr, int *error, int f, char *stop)
 		while (*s == ' ' || (*s >= '\t' && *s <= '\r'))
 			s++;
 	s += (!(f & AT_NOSIGN) && *s == '+') ? 1 : 0;
-	while ((*s >= '0' && *s <= '9') && (!(f & AT_STOP) || !ft_strchr(stop, *s)))
+	while ((*s >= '0' && *s <= '9') && (!(f & AT_STOP) || !ft_strchr(eos, *s)))
 	{
 		if (result * 10 + *s++ - 48 < result)
 			overflow = 1;
@@ -34,7 +34,7 @@ unsigned long	atoui_flag(char **nbr, int *error, int f, char *stop)
 	}
 	if ((AT_NOOVERFLOW & f && ((!(AT_LONG & f) && result > 2147483647)
 				|| overflow)) || (AT_ONLYNUM & f && (!ft_isdigit(*s)
-				&& (!(AT_STOP & f) || !ft_strchr(stop, *s)))))
+				&& (!(AT_STOP & f) || !ft_strchr(eos, *s)))))
 		*error = 1;
 	if (AT_INCREM & f && (!(AT_NOERR & f) || !*error))
 		*nbr = s;
