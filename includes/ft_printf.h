@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/12/16 21:48:56 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/06/23 15:09:34 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:51:06 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ intmax_t			get_signed(va_list arg, t_flag *flags);
 uintmax_t			get_unsigned(va_list arg, t_flag *flags);
 int					base_len(uintmax_t nb, int base);
 char				*atoi_jr(char *format, int *nb);
-
 
 /*
 ** -------------------FORMAT------------------

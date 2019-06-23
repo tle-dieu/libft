@@ -6,14 +6,14 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/05 20:04:11 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/06/23 15:45:42 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:50:32 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include "ft_printf.h"
 
-int	more_conv(va_list arg, t_print *buff, t_flag *flags, char **format)
+int		more_conv(va_list arg, t_print *buff, t_flag *flags, char **format)
 {
 	if (**format == 'b')
 		oux_conv(buff, flags, get_unsigned(arg, flags), "01\0");
@@ -28,7 +28,7 @@ int	more_conv(va_list arg, t_print *buff, t_flag *flags, char **format)
 	return (1);
 }
 
-int	get_conv(va_list arg, t_print *buff, t_flag *flags, char **format)
+int		get_conv(va_list arg, t_print *buff, t_flag *flags, char **format)
 {
 	if (**format == 's' && !flags->l)
 		s_conv(buff, flags, va_arg(arg, char *));
@@ -55,7 +55,7 @@ int	get_conv(va_list arg, t_print *buff, t_flag *flags, char **format)
 	return (1);
 }
 
-int	check_color(t_print *buff, char **format)
+int		check_color(t_print *buff, char **format)
 {
 	char	*s;
 	char	col[22];

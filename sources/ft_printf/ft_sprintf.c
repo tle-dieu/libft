@@ -6,15 +6,13 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/05 20:04:11 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/06/23 15:47:37 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:51:22 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-#include "libft.h"
-
-int ft_sprintf(char *str, const char *format, ...)
+int	ft_sprintf(char *str, const char *format, ...)
 {
 	va_list	arg;
 	t_print	buff;
