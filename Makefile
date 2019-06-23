@@ -6,11 +6,11 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/05/31 16:20:39 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/06/23 15:25:41 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libft.a
+NAME = libftprintf.a
 NAME_SHARED = libft.so
 CC = clang
 CFLAGS = -Wall -Werror -Wextra
@@ -42,12 +42,14 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(FT_PRINTF)conv_oux.c \
 		  $(FT_PRINTF)conv_p.c \
 		  $(FT_PRINTF)flags.c \
-		  $(FT_PRINTF)ft_dprintf.c \
 		  $(FT_PRINTF)ftoa_binary.c \
 		  $(FT_PRINTF)ftoa_bint.c \
 		  $(FT_PRINTF)ftoa_calc.c \
 		  $(FT_PRINTF)ftoa_list.c \
+		  $(FT_PRINTF)format.c \
+		  $(FT_PRINTF)ft_dprintf.c \
 		  $(FT_PRINTF)ft_printf.c \
+		  $(FT_PRINTF)ft_sprintf.c \
 		  $(FT_PRINTF)utils.c \
 		  $(STRING)ft_count_occ.c \
 		  $(STRING)ft_ncount_occ.c \

@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:50:07 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/06/05 16:54:18 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/06/23 15:18:34 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,6 +145,7 @@ t_list			*ft_lstnew(void const *content, size_t content_size);
 
 int				ft_printf(char const *format, ...);
 int				ft_dprintf(int fd, char const *format, ...);
+int				ft_sprintf(char *str, char const *format, ...);
 
 /*
 ** ------------ UTILS ------------
