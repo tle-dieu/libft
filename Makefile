@@ -6,11 +6,11 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/06/23 15:25:41 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/06/23 15:52:17 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = libftprintf.a
+NAME = libft.a
 NAME_SHARED = libft.so
 CC = clang
 CFLAGS = -Wall -Werror -Wextra
