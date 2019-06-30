@@ -6,7 +6,7 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/06/23 15:52:17 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/06/30 21:09:16 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -77,6 +77,7 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(STRING)ft_strlwr.c \
 		  $(STRING)ft_strmap.c \
 		  $(STRING)ft_strmapi.c \
+		  $(STRING)ft_strmode.c \
 		  $(STRING)ft_strncat.c \
 		  $(STRING)ft_strncmp.c \
 		  $(STRING)ft_strncpy.c \
