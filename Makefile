@@ -6,7 +6,7 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/07/20 06:33:20 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/07/20 07:37:08 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -148,9 +148,9 @@ RED = \033[38;2;255;60;51m
 YELLOW = \033[38;2;251;196;15m
 RMLINE = \033[2K
 RESET = \033[0m
-HIDE = civis
-SHOW = cnorm
-SLEEP_TIME = 0.01
+HIDE = tput civis
+SHOW = tput cnorm
+SLEEP = sleep 0.01
 
 ifneq (,$(filter $(flags),n no))
 	CFLAGS =
@@ -158,7 +158,11 @@ endif
 
 ifneq (,$(filter $(fsanitize),y yes))
 	CFLAGS += -g3
-	CFLAGS += -fsanitize=address
+ifeq ($(shell uname -s),Linux)
+	CFLAGS += -fsanitize=address,undefined,integer,bounds,builtin
+else
+	CFLAGS += -fsanitize=address,undefined,integer,bounds
+endif
 endif
 
 ifneq (,$(filter $(silent), y yes))
@@ -171,7 +175,7 @@ all: $(NAME) Makefile
 
 $(NAME): $(OBJECTS) Makefile
 	printf "$(RMLINE)$(YELLOW)🌘  All compiled$(RESET)\n" $(REDIRECT)
-	tput $(SHOW)
+	$(SHOW)
 	$(AR) $@ $(OBJECTS)
 	printf "$(GREEN)$@ has been created$(RESET)\n" $(REDIRECT)
 	$(RLIB) $@
@@ -181,17 +185,17 @@ so: CFLAGS += -fPIC
 so: $(NAME_SHARED)
 
 $(NAME_SHARED): $(OBJECTS) Makefile
-	tput $(SHOW)
+	$(SHOW)
 	printf "$(RMLINE)$(YELLOW)🌘  All compiled$(RESET)\n" $(REDIRECT)
 	$(CC) $(CFLAGS) -shared $(OBJECTS) -o $@
 	printf "$(GREEN)$@ has been created$(RESET)\n" $(REDIRECT)
 
 objects/%.o: %.c $(INCLUDES) Makefile
 	mkdir -p $(dir $@)
+	printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(RESET) $(notdir $<)\r" $(REDIRECT)
 	$(CC) $(CFLAGS) -I $(INCLUDES_DIR) -o $@ -c $<
-	tput $(HIDE)
-	printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compied:$(RESET) $(notdir $<)\r" $(REDIRECT)
-	sleep $(SLEEP_TIME)
+	$(HIDE)
+	$(SLEEP)
 
 clean:
 	$(RM) $(OBJECTS_DIR)
