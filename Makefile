@@ -6,7 +6,7 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/06/30 21:09:16 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/07/20 06:33:20 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,11 +19,11 @@ AR = ar rc
 RLIB = ranlib
 RM = rm -rf
 
-SOURCES_FOLDER = sources/
-OBJECTS_FOLDER = objects/
-INCLUDES_FOLDER = includes/
+SOURCES_DIR = sources/
+OBJECTS_DIR = objects/
+INCLUDES_DIR = includes/
 
-vpath %.c $(SOURCES_FOLDER)
+vpath %.c $(SOURCES_DIR)
 
 STRING = string/
 NUMERIC = numeric/
@@ -31,7 +31,6 @@ FT_PRINTF = ft_printf/
 UTILS = utils/
 LIST = list/
 MEMORY = memory/
-PRINT = printf
 
 SOURCES = $(FT_PRINTF)buff.c \
 		  $(FT_PRINTF)colors.c \
@@ -141,25 +140,25 @@ SOURCES = $(FT_PRINTF)buff.c \
 		  $(UTILS)get_next_line.c \
 		  $(UTILS)gnl_newline.c
 
-INCLUDES = $(addprefix $(INCLUDES_FOLDER), libft.h ft_printf.h get_next_line.h)
-OBJECTS = $(addprefix $(OBJECTS_FOLDER), $(SOURCES:.c=.o))
+INCLUDES = $(addprefix $(INCLUDES_DIR), libft.h ft_printf.h get_next_line.h)
+OBJECTS = $(addprefix $(OBJECTS_DIR), $(SOURCES:.c=.o))
 
 GREEN = \033[38;2;12;231;58m
 RED = \033[38;2;255;60;51m
 YELLOW = \033[38;2;251;196;15m
 RMLINE = \033[2K
 RESET = \033[0m
-HIDE = tput civis
-SHOW = tput cnorm
-SLEEP = sleep 0.01
+HIDE = civis
+SHOW = cnorm
+SLEEP_TIME = 0.01
 
 ifneq (,$(filter $(flags),n no))
-	CCFLAGS =
+	CFLAGS =
 endif
 
 ifneq (,$(filter $(fsanitize),y yes))
-	CCFLAGS += -g3
-	CCFLAGS += -fsanitize=address
+	CFLAGS += -g3
+	CFLAGS += -fsanitize=address
 endif
 
 ifneq (,$(filter $(silent), y yes))
@@ -171,8 +170,8 @@ endif
 all: $(NAME) Makefile
 
 $(NAME): $(OBJECTS) Makefile
-	$(SHOW)
 	printf "$(RMLINE)$(YELLOW)🌘  All compiled$(RESET)\n" $(REDIRECT)
+	tput $(SHOW)
 	$(AR) $@ $(OBJECTS)
 	printf "$(GREEN)$@ has been created$(RESET)\n" $(REDIRECT)
 	$(RLIB) $@
@@ -182,20 +181,20 @@ so: CFLAGS += -fPIC
 so: $(NAME_SHARED)
 
 $(NAME_SHARED): $(OBJECTS) Makefile
-	$(SHOW)
+	tput $(SHOW)
 	printf "$(RMLINE)$(YELLOW)🌘  All compiled$(RESET)\n" $(REDIRECT)
 	$(CC) $(CFLAGS) -shared $(OBJECTS) -o $@
 	printf "$(GREEN)$@ has been created$(RESET)\n" $(REDIRECT)
 
 objects/%.o: %.c $(INCLUDES) Makefile
 	mkdir -p $(dir $@)
-	$(CC) $(CFLAGS) -I $(INCLUDES_FOLDER) -o $@ -c $<
-	$(HIDE)
-	printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(RESET) $(notdir $<)\r" $(REDIRECT)
-	$(SLEEP)
+	$(CC) $(CFLAGS) -I $(INCLUDES_DIR) -o $@ -c $<
+	tput $(HIDE)
+	printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compied:$(RESET) $(notdir $<)\r" $(REDIRECT)
+	sleep $(SLEEP_TIME)
 
 clean:
-	$(RM) $(OBJECTS_FOLDER)
+	$(RM) $(OBJECTS_DIR)
 	printf "$(RED)The libft objects have been removed$(RESET)\n" $(REDIRECT)
 
 fclean: clean
