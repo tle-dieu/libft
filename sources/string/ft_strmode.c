@@ -6,7 +6,7 @@
 /*   By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/06/30 21:07:35 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/06/30 22:02:48 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/07/20 05:10:03 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,14 @@ static char	mode_to_filetype(mode_t mode)
 		return ('l');
 	else if (mode == S_IFSOCK)
 		return ('s');
+#ifdef S_IFIFO
 	else if (mode == S_IFIFO)
 		return ('p');
+#endif
+#ifdef S_IFWHT
 	else if (mode == S_IFWHT)
 		return ('w');
+#endif
 	else
 		return ('?');
 }
