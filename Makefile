@@ -6,12 +6,13 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/07/22 18:45:12 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/07/22 19:21:39 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
 NAME_DYNAMIC = libft.so
+MAKEFLAGS += --no-print-directory -j
 
 CC ?= gcc
 CFLAGS = -Wall -Werror -Wextra
