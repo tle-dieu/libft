@@ -128,7 +128,7 @@ else
 fi
 
 #libft_unit_test
-make fclean so
+make so
 awk '/LIBFTDIR/{gsub(/LIBFTDIR\t=\t..\/libft/, "LIBFTDIR = ../")};{print}' libft-unit-test/Makefile > makefile.tmp
 mv makefile.tmp libft-unit-test/Makefile
 if [[ "$TRAVIS_OS_NAME" == "linux" || "$OSTYPE" == "linux-gnu" ]]; then
