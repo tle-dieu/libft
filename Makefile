@@ -6,7 +6,7 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/07/22 16:36:07 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/07/22 18:45:12 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME_DYNAMIC = libft.so
 CC ?= gcc
 CFLAGS = -Wall -Werror -Wextra
 DCFLAGS ?= -fPIC
-DEPFLAGS = -MMD -MF $(patsubst $(SOURCES_DIR)%.c, $(ACTUAL_DEPS_DIR)%.d, $<)
+DEPFLAGS = -MMD -MF $(<:$(SOURCES_DIR)%.c=$(ACTUAL_DEPS_DIR)%.d)
 
 AR = ar rcs
 RM = rm -rf
