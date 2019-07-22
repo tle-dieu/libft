@@ -6,7 +6,7 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/07/22 20:36:19 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/07/22 20:39:33 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -208,9 +208,11 @@ endif
 
 # -------------------- Rules ------------------- #
 
-all: $(NAME) Makefile
+all:
+	$(MAKE) -j $(NAME)
 
-so: $(NAME_DYNAMIC)
+so:
+	$(MAKE) -j $(NAME_DYNAMIC)
 
 $(NAME): ACTUAL_DEPS_DIR = $(STATIC_DEPS_DIR)
 $(NAME): $(STATIC_OBJECTS) Makefile
@@ -256,4 +258,4 @@ re: fclean all
 
 .PHONY: all clean fclean re so
 
-.SILENT: $(NAME) $(NAME_DYNAMIC) $(STATIC_OBJECTS) $(DYNAMIC_OBJECTS) clean fclean $(DIRS)
+.SILENT: all so $(NAME) $(NAME_DYNAMIC) $(STATIC_OBJECTS) $(DYNAMIC_OBJECTS) clean fclean $(DIRS)
