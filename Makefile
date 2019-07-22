@@ -6,22 +6,35 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/07/21 11:49:44 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/07/22 13:33:41 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = libft.a
-NAME_SHARED = libft.so
+NAME_DYNAMIC = libft.so
 CC ?= gcc
 CFLAGS ?= -Wall -Werror -Wextra
-DEPFLAGS = -MMD -MF $(DEPS)
+DCFLAGS ?= -fPIC
+DEPFLAGS = -MMD -MF $(patsubst $(SOURCES_DIR)%.c, $(ACTUAL_DEPS_DIR)%.d, $<)
 AR = ar rcs
 RM = rm -rf
 
-SOURCES_DIR = sources/
-OBJECTS_DIR = objects/
+SOURCES_DIR  = sources/
 INCLUDES_DIR = includes/
+
+OBJECTS_DIR = objects/
+STATIC_OBJECTS_DIR  = $(OBJECTS_DIR)static/
+DYNAMIC_OBJECTS_DIR = $(OBJECTS_DIR)dynamic/
+
 DEPS_DIR = .d/
+STATIC_DEPS_DIR = $(DEPS_DIR)static/
+DYNAMIC_DEPS_DIR = $(DEPS_DIR)dynamic/
+
+STATIC_DIRS = $(sort $(dir $(STATIC_OBJECTS)))
+STATIC_DIRS += $(sort $(dir $(addprefix $(STATIC_DEPS_DIR), $(SOURCES_FILES))))
+DYNAMIC_DIRS = $(sort $(dir $(DYNAMIC_OBJECTS)))
+DYNAMIC_DIRS += $(sort $(dir $(addprefix $(DYNAMIC_DEPS_DIR), $(SOURCES_FILES))))
+DIRS = $(sort $(DYNAMIC_DIRS) $(STATIC_DIRS))
 
 STRING = string/
 NUMERIC = numeric/
@@ -138,12 +151,9 @@ SOURCES_FILES = $(FT_PRINTF)buff.c \
 		  	   $(UTILS)get_next_line.c \
 		  	   $(UTILS)gnl_newline.c
 
-INCLUDES = $(addprefix $(INCLUDES_DIR), libft.h ft_printf.h get_next_line.h)
-OBJECTS = $(addprefix $(OBJECTS_DIR), $(SOURCES_FILES:.c=.o))
+STATIC_OBJECTS = $(addprefix $(STATIC_OBJECTS_DIR), $(SOURCES_FILES:.c=.o))
+DYNAMIC_OBJECTS = $(addprefix $(DYNAMIC_OBJECTS_DIR), $(SOURCES_FILES:.c=.o))
 SOURCES = $(addprefix $(SOURCES_DIR), $(SOURCES_FILES:.c=.o))
-# DIRS = $(sort $(dir $@) $(dir $(DEPS)))
-DIRS = $(sort $(dir $(OBJECTS)) $(dir $(patsubst $(OBJECTS_DIR)%.o,$(DEPS_DIR)%.d,$(OBJECTS))))
-DEPS = $(patsubst $(OBJECTS_DIR)%.o,$(DEPS_DIR)%.d,$@)
 
 GREEN = \033[38;2;12;231;58m
 RED = \033[38;2;255;60;51m
@@ -166,30 +176,38 @@ endif
 ifneq (,$(filter $(silent), y yes))
 	HIDE :=
 	SLEEP :=
-	REDIRECT := > /dev/null
+	REDIRECT := > /dev/null 2>&1
 endif
 
 all: $(NAME) Makefile
 
-$(NAME): $(OBJECTS) Makefile
+so: $(NAME_DYNAMIC)
+
+$(NAME): ACTUAL_DEPS_DIR = $(STATIC_DEPS_DIR)
+$(NAME): $(STATIC_OBJECTS) Makefile
 	printf "$(RMLINE)$(YELLOW)🌘  All compiled$(RESET)\n" $(REDIRECT)
 	$(SHOW)
-	$(AR) $@ $(OBJECTS)
+	$(AR) $@ $(STATIC_OBJECTS)
 	printf "$(GREEN)$@ has been created$(RESET)\n" $(REDIRECT)
 
-so: CFLAGS += -fPIC
-so: $(NAME_SHARED)
 
-$(NAME_SHARED): $(OBJECTS) Makefile
-	$(SHOW)
+$(NAME_DYNAMIC): ACTUAL_DEPS_DIR = $(DYNAMIC_DEPS_DIR)
+$(NAME_DYNAMIC): $(DYNAMIC_OBJECTS) Makefile
 	printf "$(RMLINE)$(YELLOW)🌘  All compiled$(RESET)\n" $(REDIRECT)
-	$(CC) $(CFLAGS) -shared $(OBJECTS) -o $@
+	$(SHOW)
+	$(CC) $(CFLAGS) -shared $(DYNAMIC_OBJECTS) -o $@
 	printf "$(GREEN)$@ has been created$(RESET)\n" $(REDIRECT)
 
-$(OBJECTS_DIR)%.o: $(SOURCES_DIR)%.c Makefile | $(DIRS)
+$(STATIC_OBJECTS_DIR)%.o: $(SOURCES_DIR)%.c Makefile | $(STATIC_DIRS)
 	$(HIDE)
 	printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(RESET) $(notdir $<)\r" $(REDIRECT)
 	$(CC) $(CFLAGS) $(DEPFLAGS) -I $(INCLUDES_DIR) -c $< -o $@
+	$(SLEEP)
+
+$(DYNAMIC_OBJECTS_DIR)%.o: $(SOURCES_DIR)%.c Makefile | $(DYNAMIC_DIRS)
+	$(HIDE)
+	printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(RESET) $(notdir $<)\r" $(REDIRECT)
+	$(CC) $(CFLAGS) $(DCFLAGS) $(DEPFLAGS) -I $(INCLUDES_DIR) -c $< -o $@
 	$(SLEEP)
 
 $(DIRS):
@@ -200,14 +218,13 @@ clean:
 	printf "$(RED)The libft objects have been removed$(RESET)\n" $(REDIRECT)
 
 fclean: clean
-	$(RM) $(NAME)
-	$(RM) $(NAME_SHARED)
+	$(RM) $(NAME) $(NAME_DYNAMIC)
 	printf "$(RED)$(NAME) has been removed$(RESET)\n" $(REDIRECT)
 
 re: fclean all
 
--include $(addprefix $(DEPS_DIR), $(SOURCES_FILES:.c=.d))
+-include $(addprefix $(DYNAMIC_DEPS_DIR), $(SOURCES_FILES:.c=.d)) $(addprefix $(STATIC_DEPS_DIR), $(SOURCES_FILES:.c=.d))
 
 .PHONY: all clean fclean re so
 
-.SILENT: $(NAME) $(OBJECTS) clean fclean $(NAME_SHARED) $(DIRS)
+.SILENT: $(NAME) $(NAME_DYNAMIC) $(STATIC_OBJECTS) $(DYNAMIC_OBJECTS) clean fclean $(DIRS)
