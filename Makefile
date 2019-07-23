@@ -6,7 +6,7 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/07/22 20:39:33 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/07/23 11:30:14 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -192,6 +192,7 @@ SLEEP = sleep 0.01
 
 ifneq (,$(filter $(fsanitize),y yes))
 	CFLAGS += -g3
+	CC = clang
 ifeq ($(shell uname -s),Linux)
 	CFLAGS += -fsanitize=address,undefined,integer,bounds,builtin
 else
