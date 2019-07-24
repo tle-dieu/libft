@@ -6,7 +6,7 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/07/23 11:30:14 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/07/24 16:16:36 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,6 +112,7 @@ SOURCES_FILES =	$(FT_PRINTF)buff.c \
 				$(NUMERIC)ft_itoa.c \
 				$(NUMERIC)ft_sort_integer_table.c \
 				$(NUMERIC)ft_sqrt.c \
+				$(NUMERIC)swap_bytes.c \
 				$(MEMORY)ft_bzero.c \
 				$(MEMORY)ft_memalloc.c \
 				$(MEMORY)ft_memccpy.c \
