@@ -6,7 +6,7 @@
 #    By: tle-dieu <tle-dieu@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/05/18 01:10:03 by tle-dieu          #+#    #+#              #
-#    Updated: 2019/07/24 16:16:36 by tle-dieu         ###   ########.fr        #
+#    Updated: 2019/07/24 16:27:00 by tle-dieu         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -186,8 +186,6 @@ RESET = \033[0m
 
 HIDE = tput civis
 SHOW = tput cnorm
-SLEEP = sleep 0.01
-
 
 # ------------------- Options ------------------ #
 
@@ -203,7 +201,6 @@ endif
 
 ifneq (,$(filter $(silent), y yes))
 	HIDE :=
-	SLEEP :=
 	REDIRECT := > /dev/null 2>&1
 endif
 
@@ -235,13 +232,11 @@ $(STATIC_OBJECTS_DIR)%.o: $(SOURCES_DIR)%.c Makefile | $(STATIC_DIRS)
 	$(HIDE)
 	printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(RESET) $(notdir $<)\r" $(REDIRECT)
 	$(CC) $(CFLAGS) $(DEPFLAGS) -I $(INCLUDES_DIR) -c $< -o $@
-	$(SLEEP)
 
 $(DYNAMIC_OBJECTS_DIR)%.o: $(SOURCES_DIR)%.c Makefile | $(DYNAMIC_DIRS)
 	$(HIDE)
 	printf "$(RMLINE)\r🚀 $(GREEN)$(YELLOW) Compiling:$(RESET) $(notdir $<)\r" $(REDIRECT)
 	$(CC) $(CFLAGS) $(DCFLAGS) $(DEPFLAGS) -I $(INCLUDES_DIR) -c $< -o $@
-	$(SLEEP)
 
 $(DIRS):
 	mkdir -p $@
