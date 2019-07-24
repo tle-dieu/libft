@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:50:07 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/06/30 21:12:27 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2019/07/24 16:21:31 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,9 @@ int				ft_iterative_power(int nb, int power);
 char			*ft_itoa(int n);
 void			ft_sort_integer_table(int *tab, int size);
 int				ft_sqrt(int nb);
+unsigned short	swap_bytes2(unsigned short bytes);
+unsigned		swap_bytes4(unsigned bytes);
+unsigned long	swap_bytes8(unsigned long bytes);
 
 /*
 ** ------------ LIST -------------
