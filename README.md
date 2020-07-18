@@ -4,9 +4,10 @@
 
 ## Subjects
 
-- [English](subjects/fillit.en.pdf)
-- [French](subjects/fillit.fr.pdf)
+- [English](subjects/libft.en.pdf)
+- [French](subjects/libft.fr.pdf)
 
 ## Compiling
 
-Run `make` command and an executable called `fillit` should be created.
+Run `make` command and a static library called `libft.a` will be created.
+Run `make so` command and a dynamic library called `libft.so` will be created.
