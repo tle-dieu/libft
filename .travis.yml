@@ -15,7 +15,6 @@ compiler:
   - gcc
 
 before_script:
-  - git clone https://github.com/jtoty/Libftest.git
   - git clone https://github.com/alelievr/libft-unit-test.git
 
 script: make && bash unit_test.sh

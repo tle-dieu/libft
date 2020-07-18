@@ -116,16 +116,16 @@ EOF
 cp -f sources/*/* tmp_lib
 cp -f includes/* tmp_lib
 cp -f auteur tmp_lib
-bash Libftest/grademe.sh
-echo "PATH_LIBFT=../tmp_lib" >> Libftest/my_config.sh
-bash Libftest/grademe.sh
-if [[ -n $(cat Libftest/deepthought | grep -v Werror | grep -E error\|KO) ]]; then
-error=0
-	error=1
-	printf "\033[31mLibftest: KO\033[0m\n"
-else
-	printf "\033[32mLibftest: OK\033[0m\n"
-fi
+# bash Libftest/grademe.sh
+# echo "PATH_LIBFT=../tmp_lib" >> Libftest/my_config.sh
+# bash Libftest/grademe.sh
+# if [[ -n $(cat Libftest/deepthought | grep -v Werror | grep -E error\|KO) ]]; then
+# error=0
+# 	error=1
+# 	printf "\033[31mLibftest: KO\033[0m\n"
+# else
+# 	printf "\033[32mLibftest: OK\033[0m\n"
+# fi
 
 #libft_unit_test
 make so
