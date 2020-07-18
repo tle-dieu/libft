@@ -6,24 +6,15 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/06 10:50:07 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/07/24 16:21:31 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2020/07/18 15:14:44 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
 
-# include <string.h>
+# include <stddef.h>
 # include <sys/types.h>
-
-# define OSX 1
-# define LINUX 2
-# ifdef __linux__
-#  define OS LINUX
-# elif __APPLE__
-# else
-#  define OS 0
-# endif
 
 # define AT_LONG 1
 # define AT_ONLYNUM 2
