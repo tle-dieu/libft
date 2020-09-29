@@ -7,5 +7,5 @@
 
 ## Compiling
 
-Run `make` command and a static library called `libft.a` will be created.&nbsp;
+Run `make` command and a static library called `libft.a` will be created.<br/>
 Run `make so` command and a dynamic library called `libft.so` will be created.
