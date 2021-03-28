@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/08 17:59:27 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/01/16 18:16:36 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2021/03/28 23:07:55 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	p_width(t_print *buff, t_flag *flags, int len, int order)
 	}
 }
 
-static int	p_flags(t_print *buff, t_flag *flags, uintmax_t nb)
+static int	p_flags(t_print *buff, t_flag *flags, uintptr_t nb)
 {
 	int len;
 
@@ -58,7 +58,7 @@ static int	p_flags(t_print *buff, t_flag *flags, uintmax_t nb)
 	return (len);
 }
 
-void		p_conv(t_print *buff, t_flag *flags, uintmax_t nb)
+void		p_conv(t_print *buff, t_flag *flags, uintptr_t nb)
 {
 	char		*dp;
 	char		nbr[16];

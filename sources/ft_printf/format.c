@@ -6,7 +6,7 @@
 /*   By: tle-dieu <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/01/05 20:04:11 by tle-dieu          #+#    #+#             */
-/*   Updated: 2019/06/23 15:50:32 by tle-dieu         ###   ########.fr       */
+/*   Updated: 2021/03/28 23:02:56 by tle-dieu         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int		get_conv(va_list arg, t_print *buff, t_flag *flags, char **format)
 	else if (**format == 'X')
 		oux_conv(buff, flags, get_unsigned(arg, flags), "0123456789ABCDEF\0");
 	else if (**format == 'p')
-		p_conv(buff, flags, va_arg(arg, uintmax_t));
+		p_conv(buff, flags, va_arg(arg, uintptr_t));
 	else if (**format == 'o' || **format == 'O')
 		oux_conv(buff, flags, get_unsigned(arg, flags), "01234567\0");
 	else if (**format == 'f' || **format == 'F')
